@@ -23,15 +23,15 @@ fn main() {
 
     loop{
         match receiver.try_recv() {
-            Ok('w') => println!("w is received!"),
-            Ok('a') => println!("a is received!"),
-            Ok('s') => println!("s is received!"),
-            Ok('d') => println!("d is received!"),
+            Ok('w') => write!(stdout, r#"{}{}W is received"#, termion::cursor::Goto(CURSOR_X, CURSOR_Y), termion::clear::All).unwrap(),
+            Ok('a') => write!(stdout, r#"{}{}A is received"#, termion::cursor::Goto(CURSOR_X, CURSOR_Y), termion::clear::All).unwrap(),
+            Ok('s') => write!(stdout, r#"{}{}S is received"#, termion::cursor::Goto(CURSOR_X, CURSOR_Y), termion::clear::All).unwrap(),
+            Ok('d') => write!(stdout, r#"{}{}D is received"#, termion::cursor::Goto(CURSOR_X, CURSOR_Y), termion::clear::All).unwrap(),
             Ok('q') => break,
             _ => {}
         };
+        stdout.flush().unwrap()
     }
-
     println!("Game ended!");
     stdout.flush().unwrap();
 }
