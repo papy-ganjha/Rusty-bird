@@ -1,3 +1,4 @@
+#![feature(more_qualified_paths)]
 use std::io::{stdout, Write};
 use std::thread;
 use std::sync::mpsc;
@@ -5,6 +6,8 @@ use termion::raw::IntoRawMode;
 
 mod key_handler;
 
+mod frame_generator;
+use frame_generator::{ FrameGenerator, Generator };
 
 const CURSOR_X: u16 = 0;
 const CURSOR_Y: u16 = 1;
@@ -20,6 +23,9 @@ fn main() {
     let (sender, receiver) = mpsc::channel();
     // Create seperate thread for detecting input user and gives him the sender object
     thread::spawn(move || key_handler::detect_user_input(sender));
+
+    let frame_gen: FrameGenerator = FrameGenerator::new(50, 50);
+    frame_gen.init_generator();
 
     loop{
         match receiver.try_recv() {
