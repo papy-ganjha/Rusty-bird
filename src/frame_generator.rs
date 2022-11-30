@@ -16,10 +16,10 @@ impl Generator for FrameGenerator {
         FrameGenerator { height, width, frame: Vec::new()}
     }
     fn init_generator(&mut self) {
-        let line_length = 20;
+        let line_length = 40;
         let mut vector: Vec<String> = Vec::new();
         vector.push(self.create_line(line_length, true));
-        for _ in 1..10 {
+        for _ in 1..20 {
             let string = self.create_line(line_length, false);
             vector.push(string)
         }

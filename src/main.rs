@@ -5,6 +5,7 @@ use std::sync::mpsc;
 use termion::raw::IntoRawMode;
 
 mod key_handler;
+mod bird;
 
 mod frame_generator;
 use frame_generator::{ FrameGenerator, Generator };
@@ -15,7 +16,7 @@ fn main() {
     //setting up stdout and going into raw mode
     let mut stdout = stdout().into_raw_mode().unwrap();
     //printing welcoming message, clearing the screen and going to left top corner with the cursor
-    write!(stdout, r#"{}{}Welcome to my new game it should be a rusty flappy bird with some useless features just to learn rust""#, termion::cursor::Goto(CURSOR_X, CURSOR_Y), termion::clear::All)
+    write!(stdout, r#"{}{}Welcome to my new game it should be a rusty flappy bird with some useless features just to learn rust""#, termion::cursor::Goto(CURSOR_X + 30, CURSOR_Y), termion::clear::All)
             .unwrap();
     stdout.flush().unwrap();
 
