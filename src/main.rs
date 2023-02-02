@@ -9,8 +9,8 @@ use winit::event_loop::{ControlFlow, EventLoop};
 use winit::window::WindowBuilder;
 use winit_input_helper::WinitInputHelper;
 
-const WIDTH: u32 = 320;
-const HEIGHT: u32 = 320;
+const WIDTH: u32 = 520;
+const HEIGHT: u32 = 520;
 const BOX_SIZE: i16 = 28;
 
 /// Representation of the application state. In this example, a box will bounce around the screen.
