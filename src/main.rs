@@ -10,8 +10,8 @@ use winit::window::WindowBuilder;
 use winit_input_helper::WinitInputHelper;
 
 const WIDTH: u32 = 320;
-const HEIGHT: u32 = 240;
-const BOX_SIZE: i16 = 64;
+const HEIGHT: u32 = 320;
+const BOX_SIZE: i16 = 28;
 
 /// Representation of the application state. In this example, a box will bounce around the screen.
 struct World {
@@ -68,6 +68,9 @@ fn main() -> Result<(), Error> {
             if let Some(size) = input.window_resized() {
                 pixels.resize_surface(size.width, size.height);
             }
+            if input.key_pressed(VirtualKeyCode::Space) {
+                world.jump()
+            }
 
             // Update internal state and request a redraw
             world.update();
@@ -82,9 +85,13 @@ impl World {
         Self {
             box_x: 24,
             box_y: 16,
-            velocity_x: 1,
-            velocity_y: 1,
+            velocity_x: 2,
+            velocity_y: 4,
         }
+    }
+
+    fn jump(&mut self) {
+        self.velocity_y *= -1
     }
 
     /// Update the `World` internal state; bounce the box around the screen.
